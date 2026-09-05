@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Pdfsharp.Builder.Tests/Pdfsharp.Builder.Tests.csproj" />
+  <Project Path="PdfSharp.Builder/PdfSharp.Builder.csproj" />
+</Solution>
