@@ -30,7 +30,7 @@ public class PdfDocumentGeneratorTests
         Assert.True(true);
     }
 
-    private byte[] GetEmbeddedResourceImage(string name)
+    private static byte[] GetEmbeddedResourceImage(string name)
     {
         Assembly assembly = Assembly.GetExecutingAssembly();
 
@@ -40,13 +40,10 @@ public class PdfDocumentGeneratorTests
         if (resourceName == null)
             throw new FileNotFoundException("Embedded resource not found.");
 
-        byte[] imageBytes;
-        using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-        using (MemoryStream ms = new MemoryStream())
-        {
-            stream.CopyTo(ms);
-            imageBytes = ms.ToArray();
-        }
+        using Stream? stream = assembly.GetManifestResourceStream(resourceName);
+        using MemoryStream ms = new MemoryStream();
+        stream?.CopyTo(ms);
+        var imageBytes = ms.ToArray();
 
         return imageBytes;
     }
